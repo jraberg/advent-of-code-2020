@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "advant-of-code"
+version = "0.1.0"
+description = ""
+authors = ["Jonas Råberg"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^1.1.4"
+numpy = "^1.19.4"
+pdbpp = "^0.10.2"
+ipython = "^7.19.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.1"
+black = { version = "^20.8b1", allow-prereleases = true }
+flake8 = "^3.8.4"
+isort = "^5.6.4"
+mypy = "^0.790"
+
+[tool.black]
+line-length = 120  # Specify the line length
+target-version = ['py38']  # Specify your Python version
+include = '\.pyi?$'
+exclude = '''  # Specify the files/dirs that should be ignored by the black formatter
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
