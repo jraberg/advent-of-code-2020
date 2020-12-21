@@ -30,7 +30,7 @@ def has_required_fields(passport: Passport) -> bool:
 
 
 def read_data() -> str:
-    passports_file = os.path.join('data', 'day4.txt')
+    passports_file = os.path.join('..','data', 'day4alt.txt')
     lines: List[str]
     with open(passports_file) as file:
         return file.read()
