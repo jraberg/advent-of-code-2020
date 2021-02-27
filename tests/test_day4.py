@@ -1,4 +1,50 @@
-from aoc_2020.day4 import parse_raw, has_required_fields, is_valid_passport
+from aoc.day4 import has_required_fields, is_valid_passport, parse_data, read_data
+
+
+def test_is_valid() -> None:
+    assert True
+
+
+def test_parse_raw() -> None:
+    passports = parse_data(P)
+    assert len(passports) == 4
+    assert {"ecl", "eyr", "hcl", "byr", "iyr", "cid", "hgt"}.difference(passports[0].keys()) == set()
+    assert {"iyr", "ecl", "cid", "eyr", "pid", "hcl", "byr"}.difference(passports[1].keys()) == set()
+    assert {"hcl", "iyr", "eyr", "ecl", "pid", "byr", "hgt"}.difference(passports[2].keys()) == set()
+    assert {"hcl", "eyr", "pid", "iyr", "ecl", "hgt"}.difference(passports[3].keys()) == set()
+
+
+def test_passport_has_required_fields() -> None:
+    passports = parse_data(P)
+    assert has_required_fields(passports[0])
+    assert not has_required_fields(passports[1])
+    assert has_required_fields(passports[2])
+    assert not has_required_fields(passports[3])
+
+
+def test_passports_valid() -> None:
+    passports = parse_data(VALID_PASSPORTS)
+    for p in passports:
+        assert is_valid_passport(p)
+    assert len(passports) == 4
+
+
+def test_passports_invalid() -> None:
+    passports = parse_data(INVALID_PASSPORTS)
+    for p in passports:
+        assert not is_valid_passport(p)
+    assert len(passports) == 4
+
+
+def test_valid_result_part1() -> None:
+    solution = sum([has_required_fields(p) for p in parse_data(read_data("day4.txt"))])
+    assert solution == 226
+
+
+def test_valid_result_part2() -> None:
+    solution = sum([is_valid_passport(p) for p in parse_data(read_data("day4.txt"))])
+    assert solution == 160
+
 
 P = """
 ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
@@ -15,7 +61,6 @@ hgt:179cm
 hcl:#cfa07d eyr:2025 pid:166559648
 iyr:2011 ecl:brn hgt:59in
 """
-
 
 INVALID_PASSPORTS = """
 eyr:1972 cid:100
@@ -47,34 +92,3 @@ eyr:2022
 
 iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
 """
-
-def test_is_valid():
-    assert True
-
-
-def test_parse_raw():
-    passports = parse_raw(P)
-    assert len(passports) == 4
-    assert {'ecl', 'eyr', 'hcl', 'byr', 'iyr', 'cid', 'hgt'}.difference(passports[0].keys()) == set()
-    assert {'iyr', 'ecl', 'cid', 'eyr', 'pid', 'hcl', 'byr'}.difference(passports[1].keys()) == set()
-    assert {'hcl', 'iyr', 'eyr', 'ecl', 'pid', 'byr', 'hgt'}.difference(passports[2].keys()) == set()
-    assert {'hcl', 'eyr', 'pid', 'iyr', 'ecl', 'hgt'}.difference(passports[3].keys()) == set()
-
-
-def test_passport_has_required_fields():
-    passports = parse_raw(P)
-    assert has_required_fields(passports[0])
-    assert not has_required_fields(passports[1])
-    assert has_required_fields(passports[2])
-    assert not has_required_fields(passports[3])
-
-def test_passports_valid():
-    passports = parse_raw(VALID_PASSPORTS)
-    for p in passports:
-        assert is_valid_passport(p)
-
-
-def test_passports_invalid():
-    passports = parse_raw(INVALID_PASSPORTS)
-    for p in passports:
-        assert not is_valid_passport(p)
