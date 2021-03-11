@@ -25,7 +25,7 @@ class Password(NamedTuple):
 
 
 def read_data() -> List[Password]:
-    password_file = os.path.join("..", "inputs", "day2.txt")
+    password_file = os.path.join(".", "inputs", "day2.txt")
     with open(password_file) as file:
         return [Password.parse(line) for line in file]
 

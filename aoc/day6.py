@@ -4,7 +4,7 @@ from os import path
 
 
 def read_data(filename: str) -> str:
-    file_name = path.join("..", "inputs", filename)
+    file_name = path.join(".", "inputs", filename)
     with open(file_name) as file:
         return file.read()
 

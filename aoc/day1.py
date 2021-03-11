@@ -6,7 +6,7 @@ MAGIC_NUMBER = 2020
 
 
 def read_data() -> List[int]:
-    data_file = os.path.join("..", "inputs", "day1.txt")
+    data_file = os.path.join(".", "inputs", "day1.txt")
     with open(data_file) as file:
         return [int(line) for line in file]
 

@@ -11,7 +11,7 @@ from typing import List
 
 
 def read_data(filename: str) -> List[str]:
-    data_file = os.path.join("..", "inputs", filename)
+    data_file = os.path.join(".", "inputs", filename)
     with open(data_file) as file:
         return [line.strip() for line in file.readlines()]
 

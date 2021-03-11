@@ -9,7 +9,7 @@ REQUIRED_FIELDS = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
 
 
 def read_data(filename: str) -> str:
-    passports_file = os.path.join("..", "inputs", filename)
+    passports_file = os.path.join(".", "inputs", filename)
     with open(passports_file) as file:
         return file.read()
 

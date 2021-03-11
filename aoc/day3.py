@@ -6,7 +6,7 @@ from typing import List
 
 
 def read_data(filename: str) -> List[str]:
-    map_file = os.path.join("..", "inputs", filename)
+    map_file = os.path.join(".", "inputs", filename)
     with open(map_file) as file:
         return [line.strip() for line in file.readlines()]
 
